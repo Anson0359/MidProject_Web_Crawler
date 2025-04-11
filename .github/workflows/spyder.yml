@@ -3,8 +3,8 @@ name: run spyder
 on:
   push:               # 每次 push 時執行
     branches:
-      - main          # 指定 main branch（可以改成你自己的）
-  schedule:           # 每 30 分鐘執行一次
+      - main          # 指定 main branch
+  schedule:           # 每天早上9點執行
     - cron: '0 1 * * *'
   workflow_dispatch:  # 手動觸發
 
@@ -24,16 +24,19 @@ jobs:
         with:
           python-version: '3.10'
 
+      # 安裝套件
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
 
+      # 執行 code
       - name: Run api.py
         run: python api.py
 
       - name: Run static.py
         run: python static.py
 
+      # 把寫好的CSV commit
       - name: Commit and push changes
         run: |
           git config user.name "github-actions[bot]"
