@@ -33,3 +33,10 @@ jobs:
 
       - name: Run static.py
         run: python static.py
+
+      - name: Upload CSV output
+        uses: actions/upload-artifact@v4
+        with:
+          name: csv-output
+          path: |
+            *.csv
