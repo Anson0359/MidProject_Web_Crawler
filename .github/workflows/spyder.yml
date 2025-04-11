@@ -1,9 +1,12 @@
-name: Run Python Scripts Daily
+name: run spyder
 
 on:
-  schedule:
-    - cron: '0 1 * * *'  # UTC 時間，等於台灣時間早上 9 點
-  workflow_dispatch:     # 可以手動觸發
+  push:               # 每次 push 時執行
+    branches:
+      - main          # 指定 main branch（可以改成你自己的）
+  schedule:           # 每 30 分鐘執行一次
+    - cron: '*/30 * * * *'
+  workflow_dispatch:  # 手動觸發
 
 jobs:
   run-scripts:
